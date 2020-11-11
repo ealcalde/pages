@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pages
+  name: pages
+  namespace: brixton
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pages
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: pages
+    spec:
+      containers:
+        - name: pages
+          image: ealcalde/pages:1.0
+          ports:
+            - containerPort: 8080

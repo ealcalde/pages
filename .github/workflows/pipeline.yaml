@@ -52,8 +52,18 @@ jobs:
       - name: EKS Login
         run: |
           aws eks --region ap-south-1 update-kubeconfig --name dees-cloud
+      - name: K8s check contexts
+        run: |
           kubectl config get-contexts
+      - name: K8s set namespace
+        run: |
           kubectl apply -f deployment/pages-namespace.yaml
+      - name: K8s apply configuration
+        run: |
           kubectl apply -f deployment/pages-config.yaml
+      - name: K8s apply service definition
+        run: |
           kubectl apply -f deployment/pages-service.yaml
+      - name: K8s deploy
+        run: |
           kubectl apply -f deployment/pages-deployment.yaml
